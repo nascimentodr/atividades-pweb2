@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { produtos } from "./produtos.js";
+import { categorias } from "./categorias.js";
 
 const app = express();
 const PORT = 3000;
@@ -36,6 +37,22 @@ app.get("/api/produtos/:id", (req, res) => {
 
   res.json(produto);
 });
+
+
+
+//adriano 
+app.get("/api/categorias/", function(req,res) {
+  res.status(200).json(categorias);
+});
+
+
+//
+app.get("/api/categorias/:id", function(req, res) {
+  const id = Number(req.params.id);
+  const categoria = categorias.find(categ => categ.id === id);
+  res.status(200).json(categoria);
+});
+
 
 app.listen(PORT, () => {
   console.log(`API da Loja rodando na porta ${PORT}`);
